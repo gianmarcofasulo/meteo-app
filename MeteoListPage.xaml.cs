@@ -5,10 +5,9 @@ public partial class MeteoListPage : Shell
     public Dictionary<string, Type> Routes { get; private set; } = new Dictionary<string, Type>();
 
     public MeteoListPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         RegisterRoutes();
-
         BindingContext = new MeteoListViewModel();
     }
 
@@ -35,13 +34,13 @@ public partial class MeteoListPage : Shell
         }
     }
 
-    private void OnItemAdded(object sender, EventArgs e)
+    private async void OnItemAdded(object sender, EventArgs e)
     {
-         _ = ShowPrompt();
-    }
+        string locationName = await DisplayPromptAsync("Add Location", "Enter the location name:");
 
-    private async Task ShowPrompt()
-    {
-        await DisplayAlert("Add City", "To Be Implemented", "OK");
+        if (!string.IsNullOrEmpty(locationName))
+        {
+            ((MeteoListViewModel)BindingContext).AddEntry(locationName);
+        }
     }
 }
