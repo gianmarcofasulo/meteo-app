@@ -59,8 +59,9 @@ public partial class MeteoListPage : Shell
         // Creare una nuova pagina per l'aggiunta della città
         var addCityPage = new AddCityPage();
 
-        // Mostrare la pagina modale per l'aggiunta della città
-        await Navigation.ShowModalAsync(addCityPage);
+    private void OnItemAdded(object sender, EventArgs e)
+    {
+        _ = ShowPrompt();
     }
 
     private async Task ShowPrompt()
