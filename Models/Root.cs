@@ -83,7 +83,7 @@ namespace MeteoApp.Models
         public string main { get; set; }
         public string description { get; set; }
         public string icon { get; set; }
-        //string fullIconUrl => string.Format("https://openweathermap.org/img/wn/{0}@2x.png", icon);
+        //public string fullIconUrl => string.Format("https://openweathermap.org/img/wn/{0}@2x.png", icon);
         public string customIcon => string.Format("icon_{0}.png", icon);
 
     }

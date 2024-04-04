@@ -1,4 +1,5 @@
 ﻿using MeteoApp.Services;
+using Microsoft.Maui.Controls;
 
 namespace MeteoApp;
 
@@ -54,19 +55,11 @@ public partial class MeteoListPage : Shell
         LblWind.Text = result.list[0].wind.speed + "km/h";
         ImgWeatherIcon.Source = result.list[0].weather[0].customIcon;
     }
+
     private async void OnItemAdded(object sender, EventArgs e)
     {
-        // Creare una nuova pagina per l'aggiunta della città
         var addCityPage = new AddCityPage();
-
-    private void OnItemAdded(object sender, EventArgs e)
-    {
-        _ = ShowPrompt();
-    }
-
-    private async Task ShowPrompt()
-    {
-        await DisplayAlert("Feature", "To Be Implemented", "OK");
+        await Navigation.PushModalAsync(addCityPage);
     }
    
 }
