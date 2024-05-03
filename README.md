@@ -20,7 +20,7 @@ Per installare l'app, segui questi passaggi:
 
 1. Clona il repository sul tuo computer:
    ```
-   git clone https://github.com/gianmarco/maui-weather-app.git
+   git clone https://github.com/gianmarcofasulo/maui-weather-app.git
    ```
 2. Apri il progetto con Visual Studio 2022 o Visual Studio Code.
 3. Compila e avvia l'applicazione.
