@@ -13,23 +13,19 @@ public partial class AddPage : ContentPage
     {
         string cityName = CityEntry.Text;
         SaveCity(cityName);
+        GoBack();
     }
+
+    private async void GoBack()
+    {
+        await Shell.Current.Navigation.PushAsync(new MainPage());
+    }
+
 
     private void SaveCity(string cityName)
     {
         var entry = new Entry { Name = cityName };
         _database.SaveEntry(entry);
     }
-
-    private void DeleteCity(Entry entry)
-    {
-        _database.DeleteEntry(entry);
-    }
-
-    private List<Entry> GetCities()
-    {
-        return _database.GetEntries();
-    }
-
 
 }

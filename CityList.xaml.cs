@@ -5,7 +5,7 @@ public partial class CityList : ContentPage
 
     private MyDaLocationDatabase database;
 
-   
+
     public CityList()
     {
         InitializeComponent();
@@ -17,6 +17,7 @@ public partial class CityList : ContentPage
     {
         base.OnAppearing();
         GetEntries();
+       
     }
 
     private void GetEntries()
@@ -25,25 +26,35 @@ public partial class CityList : ContentPage
         EntryButtonsContainer.Children.Clear();
 
         var entries = database.GetEntries();
-
+        
         foreach (var entry in entries)
         {
+            var swipeView = new SwipeView();
+
             var button = new Button
             {
                 Text = entry.Name,
             };
 
+            // Gestisci l'evento SwipeEnded per eliminare la città
+            swipeView.SwipeEnded += async (s, args) =>
+            {
+                database.DeleteEntry(entry);
+                // Aggiorna la lista delle città dopo l'eliminazione
+                GetEntries();
+            };
+
+            //onclicked event
             button.Clicked += async (s, args) =>
             {
                 var cityName = ((Button)s).Text;
-                // await GetWeatherByCity(cityName);
+                await Navigation.PushAsync(new MainPage(cityName));
             };
 
-            // Aggiungi il pulsante al contenitore
-            EntryButtonsContainer.Children.Add(button);
+            swipeView.Content = button;
+
+            // Aggiungi il SwipeView al contenitore
+            EntryButtonsContainer.Children.Add(swipeView);
         }
     }
-
 }
-
-

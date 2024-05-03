@@ -17,6 +17,17 @@ public partial class MainPage : Shell
         WeatherList = new List<Models.List>();
     }
 
+    public MainPage(string cityName)
+    {
+        InitializeComponent();
+
+        BindingContext = new MeteoListViewModel();
+        WeatherList = new List<Models.List>();
+
+        // Chiama GetWeatherByCity per ottenere i dati meteorologici per la città specificata
+        GetWeatherByCity(cityName);
+    }
+
     protected async override void OnAppearing()
     {
         base.OnAppearing();

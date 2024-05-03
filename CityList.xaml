@@ -21,11 +21,13 @@
 
     <StackLayout Margin="20">
         <Label Text="Lista delle Città" />
+
         <!-- ScrollView per rendere i bottoni scorrevoli -->
         <ScrollView VerticalScrollBarVisibility="Always">
             <StackLayout x:Name="EntryButtonsContainer" Margin="0,20">
                 <!-- Questo è vuoto poiché le voci verranno aggiunte dinamicamente -->
             </StackLayout>
         </ScrollView>
+
     </StackLayout>
 </ContentPage>
