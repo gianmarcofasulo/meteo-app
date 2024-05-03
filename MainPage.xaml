@@ -1,15 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-       x:Class="MeteoApp.MeteoListPage"
-       >
-
-    <ContentPage Title="Weather">
+﻿
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="MeteoApp.MainPage">
+    <ContentPage>
+        
         <ContentPage.ToolbarItems>
-            <ToolbarItem IconImageSource="location.png" Priority="1" 
-                         Order="Primary" Clicked="OnItemLocation" />
-            <ToolbarItem IconImageSource="plus.png" Priority="2" 
-                         Order="Primary" Clicked="OnItemAdded" />
+            <ToolbarItem IconImageSource="location.png" Priority="1" Order="Primary" Clicked="OnItemLocation" />
+            <ToolbarItem IconImageSource="plus.png" Priority="1" Order="Primary" Clicked="OnItemAdded" />
+            <ToolbarItem IconImageSource="hambuger_menu.png" Priority="2" Order="Default" Clicked="OnShowList" />
         </ContentPage.ToolbarItems>
 
 
@@ -54,7 +50,7 @@
                             <Image Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="50" WidthRequest="50" 
                                    Source="{Binding weather[0].customIcon}"/>
                             <Label Grid.Row="1" FontSize="Large" HorizontalOptions="Center"
-                                   Text="{Binding main.temperature}"/>
+                                   Text="{Binding main.temperature, StringFormat='{}{0}°'}"/>
                             <Label Grid.Row="2" FontSize="Small" HorizontalOptions="Center"
                                    Text="{Binding dateTime}"/>
                         </Grid>
