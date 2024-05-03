@@ -4,7 +4,7 @@ La Maui Weather App è un'applicazione meteo sviluppata utilizzando il framework
 
 ## Descrizione
 
-La Maui Weather App offre previsioni meteo dettagliate e aggiornate per gli utenti dell'isola di Maui, Hawaii.
+La Maui Weather App offre previsioni meteo dettagliate e aggiornate per gli utenti.
 
 ## Requisiti di Sistema
 
@@ -27,7 +27,7 @@ Per installare l'app, segui questi passaggi:
 
 Dopo aver avviato l'applicazione, gli utenti possono:
 
-- Visualizzare le previsioni meteo attuali per l'isola di Maui.
+- Visualizzare le previsioni meteo attuali.
 - Selezionare una città specifica per ottenere previsioni più dettagliate.
 - Scorrere tra le previsioni dei prossimi giorni.
 
