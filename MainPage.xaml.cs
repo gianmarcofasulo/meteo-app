@@ -2,14 +2,14 @@
 
 namespace MeteoApp;
 
-public partial class MeteoListPage : Shell
+public partial class MainPage : Shell
 {
     public Dictionary<string, Type> Routes { get; private set; } = new Dictionary<string, Type>();
     public List<Models.List> WeatherList;
     private double latitude;
     private double longitude;
 
-    public MeteoListPage()
+    public MainPage()
 	{
 		InitializeComponent();
 
@@ -55,6 +55,31 @@ public partial class MeteoListPage : Shell
         ImgWeatherIcon.Source = result.list[0].weather[0].customIcon;
     }
 
+    private async void GetWeatherByCity(string cityName)
+    {
+        var result = await ApiService.GetWeatherByCity(cityName);
+
+        foreach (var item in result.list)
+        {
+            WeatherList.Add(item);
+        }
+        CvWeather.ItemsSource = WeatherList;
+
+        LblCity.Text = result.city.name;
+        LblWheatherDesc.Text = result.list[0].weather[0].description;
+        LblTemperature.Text = result.list[0].main.temperature + "°";
+        LblHumidity.Text = result.list[0].main.humidity + "%";
+        LblWind.Text = result.list[0].wind.speed + "km/h";
+        ImgWeatherIcon.Source = result.list[0].weather[0].customIcon;
+    }
+
+
+    private async void OnShowList(object sender, EventArgs e)
+   {
+        await Shell.Current.Navigation.PushAsync(new CityList());
+   }
+
+
     private void OnItemAdded(object sender, EventArgs e)
     {
         _ = ShowPrompt();
@@ -62,7 +87,7 @@ public partial class MeteoListPage : Shell
 
     private async Task ShowPrompt()
     {
-        await DisplayAlert("Feature", "To Be Implemented", "OK");
+        await Shell.Current.Navigation.PushModalAsync(new AddPage());
     }
    
 }
