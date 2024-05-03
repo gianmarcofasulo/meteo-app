@@ -33,7 +33,7 @@ Dopo aver avviato l'applicazione, gli utenti possono:
 - Selezionare una città specifica per ottenere previsioni più dettagliate.
 - Scorrere tra le previsioni dei prossimi giorni.
 
-Nota: Al momento, c'è un problema quando si fa clic su una città nella lista delle previsioni. L'errore verrà risolto nella prossima versione dell'applicazione.
+Nota: Al momento, c'è un problema quando si fa clic su una città nella lista delle città. L'errore verrà risolto nella prossima versione dell'applicazione.
 
 ## Contributi
 
