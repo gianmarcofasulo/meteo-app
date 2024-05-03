@@ -4,9 +4,11 @@ La Maui Weather App è un'applicazione meteo sviluppata utilizzando il framework
 
 ## Descrizione
 
-La Maui Weather App offre previsioni meteo dettagliate e aggiornate per gli utenti.
+La Maui Weather App fornisce previsioni meteo dettagliate e aggiornate per gli utenti, offrendo un'esperienza intuitiva e facile da usare.
 
 ## Requisiti di Sistema
+
+Per utilizzare l'app, è necessario soddisfare i seguenti requisiti:
 
 - .NET 6 SDK
 - Visual Studio 2022 o Visual Studio Code
@@ -31,6 +33,8 @@ Dopo aver avviato l'applicazione, gli utenti possono:
 - Selezionare una città specifica per ottenere previsioni più dettagliate.
 - Scorrere tra le previsioni dei prossimi giorni.
 
+Nota: Al momento, c'è un problema quando si fa clic su una città nella lista delle previsioni. L'errore verrà risolto nella prossima versione dell'applicazione.
+
 ## Contributi
 
 Siamo aperti ai contributi! Se desideri contribuire allo sviluppo dell'app, segui questi passaggi:
@@ -52,8 +56,6 @@ Siamo aperti ai contributi! Se desideri contribuire allo sviluppo dell'app, segu
 
 ## Contatti
 
-Per qualsiasi domanda o suggerimento, non esitare a contattarci all'indirizzo email [gianmarcofasulo@gmail.com].
+Per qualsiasi domanda, suggerimento o segnalazione di bug, non esitare a contattarci all'indirizzo email [gianmarcofasulo@gmail.com]. Saremo lieti di assisterti!
 
----
-
-Adatta questo modello aggiungendo informazioni specifiche sulla tua app e sul processo di sviluppo con .NET Maui. Buona fortuna con la tua app meteo!
+Buona fortuna con la tua app meteo!
