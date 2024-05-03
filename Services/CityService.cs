@@ -49,7 +49,7 @@ namespace MeteoApp.Services
             {
                 var city = new Entry
                 {
-                    CityName = cityName,
+                    Name = cityName,
                     Longitude = longitude,
                     Latitude = latitude
                 };
