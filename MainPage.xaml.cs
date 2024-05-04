@@ -8,13 +8,16 @@ public partial class MainPage : Shell
     public List<Models.List> WeatherList;
     private double latitude;
     private double longitude;
+    public static string CityName { get; set; }
+    public static MainPage Current { get; private set; }
 
     public MainPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
         BindingContext = new MeteoListViewModel();
         WeatherList = new List<Models.List>();
+        Current = this;
     }
 
     public MainPage(string cityName)
@@ -26,26 +29,39 @@ public partial class MainPage : Shell
 
         // Chiama GetWeatherByCity per ottenere i dati meteorologici per la città specificata
         GetWeatherByCity(cityName);
+        Current = this;
     }
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
         await GetLocation();
-        await GetWeatherDataByLocation(latitude,longitude);
+        await GetWeatherDataByLocation(latitude, longitude);
     }
+
 
     public async Task GetLocation()
     {
         var location = await Geolocation.GetLocationAsync();
+
         latitude = location.Latitude;
         longitude = location.Longitude;
     }
-    
+
     private async void OnItemLocation(object sender, EventArgs e)
     {
         await GetLocation();
         await GetWeatherDataByLocation(latitude, longitude);
+    }
+    public void Update(string city)
+    {
+        if (city.Length > 0)
+        {
+            CityName = city;
+            BindingContext = new MeteoListViewModel();
+            WeatherList = new List<Models.List>();
+            GetWeatherByCity(CityName);
+        }
     }
 
     public async Task GetWeatherDataByLocation(double latitude, double longitude)
@@ -57,7 +73,7 @@ public partial class MainPage : Shell
             WeatherList.Add(item);
         }
         CvWeather.ItemsSource = WeatherList;
-
+        CityName = result.city.name;
         LblCity.Text = result.city.name;
         LblWheatherDesc.Text = result.list[0].weather[0].description;
         LblTemperature.Text = result.list[0].main.temperature + "°";
@@ -68,6 +84,10 @@ public partial class MainPage : Shell
 
     private async void GetWeatherByCity(string cityName)
     {
+        if (cityName.Length == 0)
+        {
+            return;
+        }
         var result = await ApiService.GetWeatherByCity(cityName);
 
         foreach (var item in result.list)
@@ -86,9 +106,9 @@ public partial class MainPage : Shell
 
 
     private async void OnShowList(object sender, EventArgs e)
-   {
+    {
         await Shell.Current.Navigation.PushAsync(new CityList());
-   }
+    }
 
 
     private void OnItemAdded(object sender, EventArgs e)
@@ -100,5 +120,5 @@ public partial class MainPage : Shell
     {
         await Shell.Current.Navigation.PushModalAsync(new AddPage());
     }
-   
+
 }

@@ -18,9 +18,8 @@ public partial class AddPage : ContentPage
 
     private async void GoBack()
     {
-        await Shell.Current.Navigation.PushAsync(new MainPage());
+        await Shell.Current.Navigation.PopAsync();
     }
-
 
     private void SaveCity(string cityName)
     {

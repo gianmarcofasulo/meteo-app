@@ -17,7 +17,7 @@ public partial class CityList : ContentPage
     {
         base.OnAppearing();
         GetEntries();
-       
+
     }
 
     private void GetEntries()
@@ -26,7 +26,7 @@ public partial class CityList : ContentPage
         EntryButtonsContainer.Children.Clear();
 
         var entries = database.GetEntries();
-        
+
         foreach (var entry in entries)
         {
             var swipeView = new SwipeView();
@@ -36,11 +36,11 @@ public partial class CityList : ContentPage
                 Text = entry.Name,
             };
 
-            // Gestisci l'evento SwipeEnded per eliminare la città
+            // Gestisci l'evento SwipeEnded per eliminare la citt?
             swipeView.SwipeEnded += async (s, args) =>
             {
                 database.DeleteEntry(entry);
-                // Aggiorna la lista delle città dopo l'eliminazione
+                // Aggiorna la lista delle citt? dopo l'eliminazione
                 GetEntries();
             };
 
@@ -48,7 +48,10 @@ public partial class CityList : ContentPage
             button.Clicked += async (s, args) =>
             {
                 var cityName = ((Button)s).Text;
-                await Navigation.PushAsync(new MainPage(cityName));
+
+                MainPage.Current.Update(cityName);
+                await Navigation.PopAsync();
+
             };
 
             swipeView.Content = button;
