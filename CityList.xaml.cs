@@ -1,63 +1,65 @@
-namespace MeteoApp;
+using MeteoApp;
+using Microsoft.Maui.Controls;
+using System;
 
-public partial class CityList : ContentPage
+namespace MeteoApp
 {
-
-    private MyDaLocationDatabase database;
-
-
-    public CityList()
+    public partial class CityList : ContentPage
     {
-        InitializeComponent();
-        database = new MyDaLocationDatabase();
-        OnAppearing();
-    }
+        private MyDaLocationDatabase database;
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        GetEntries();
-
-    }
-
-    private void GetEntries()
-    {
-        // Svuota il contenitore dei pulsanti prima di aggiungere nuovi pulsanti
-        EntryButtonsContainer.Children.Clear();
-
-        var entries = database.GetEntries();
-
-        foreach (var entry in entries)
+        public CityList()
         {
-            var swipeView = new SwipeView();
+            InitializeComponent();
+            database = new MyDaLocationDatabase();
+            OnAppearing();
+        }
 
-            var button = new Button
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            GetEntries();
+        }
+
+        private void GetEntries()
+        {
+            // Svuota il contenitore dei pulsanti prima di aggiungere nuovi pulsanti
+            EntryButtonsContainer.Children.Clear();
+
+            var entries = database.GetEntries();
+
+            foreach (var entry in entries)
             {
-                Text = entry.Name,
-            };
+                var swipeView = new SwipeView();
 
-            // Gestisci l'evento SwipeEnded per eliminare la citt?
-            swipeView.SwipeEnded += async (s, args) =>
-            {
-                database.DeleteEntry(entry);
-                // Aggiorna la lista delle citt? dopo l'eliminazione
-                GetEntries();
-            };
+                var button = new Button
+                {
+                    Text = entry.Name,
+                };
 
-            //onclicked event
-            button.Clicked += async (s, args) =>
-            {
-                var cityName = ((Button)s).Text;
+                // Gestisci l'evento SwipeEnded per eliminare la città
+                swipeView.SwipeEnded += async (s, args) =>
+                {
+                    database.DeleteEntry(entry);
+                    // Aggiorna la lista delle città dopo l'eliminazione
+                    GetEntries();
+                };
 
-                MainPage.Current.Update(cityName);
-                await Navigation.PopAsync();
+                // Gestisci l'evento Clicked per gestire l'azione quando l'utente fa clic sul pulsante della città
+                button.Clicked += async (s, args) =>
+                {
+                    var cityName = ((Button)s).Text;
 
-            };
+                    MainPage.Current.Update(cityName);
+                    await Navigation.PopAsync();
 
-            swipeView.Content = button;
+                };
 
-            // Aggiungi il SwipeView al contenitore
-            EntryButtonsContainer.Children.Add(swipeView);
+                swipeView.Content = button;
+
+                // Aggiungi il SwipeView al contenitore
+                EntryButtonsContainer.Children.Add(swipeView);
+            }
         }
     }
 }
